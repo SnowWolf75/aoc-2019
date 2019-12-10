@@ -2,9 +2,16 @@
 import argparse
 import subprocess
 from datetime import datetime
+from pytz import timezone
+import pytz
 
-cur_day = datetime.now().day
-cur_year = datetime.now().year
+utc_dt = datetime.utcnow().replace(tzinfo=pytz.utc)
+eastern = timezone('US/Eastern')
+east_coast = utc_dt.astimezone(eastern)
+cur_day = east_coast.day
+cur_year = east_coast.year
+print("Current UTC:",utc_dt)
+print("Current datetime:",east_coast)
 
 parser = argparse.ArgumentParser(description='Read Input for Advent of Code')
 parser.add_argument('--day', type=int, default=cur_day)
