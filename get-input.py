@@ -2,6 +2,7 @@
 import argparse
 import subprocess
 import requests
+import shutil
 from datetime import datetime
 
 cur_day = datetime.now().day
@@ -18,9 +19,51 @@ url = "https://adventofcode.com/{}/day/{}/input".format(args.year, args.day)
 res = requests.get(url, cookies=cook)
 
 if res.status_code == 200:
-  outfile = "aoc_2019/inputs/{0:04d}_12_{1:02d}_input.txt".format( args.year, args.day )
+  outfile = "inputs/{0:04d}_12_{1:02d}_input.txt".format( args.year, args.day )
   with open(outfile, "w") as fh:
     fh.write( str( res.text.strip() ) )
   print("Input text fetched and saved:",outfile)
 
 # https://adventofcode.com/2019/day/8/input
+
+stub = 'stub.py'
+newfile = "{:02d}.py".format(args.day)
+shutil.copy(stub, newfile)
+
+myday = "{:02d}".format(args.day)
+template = """
+filename = "{2}"
+
+class day{0}:
+  def __init__(self):
+    pass
+
+class day{0}part1(day{0}):
+  def solve(self, args):
+    pass
+
+class day{0}part2(day{0}):
+  def solve(self, args):
+    pass
+
+
+class examples(unittest.TestCase):
+  def test_examples_part1(self):
+    day{1} = day{0}part1()
+    # self.assetTrue()
+
+  def test_examples_part2(self):
+    day{1} = day{0}part2()
+    # self.assetTrue()
+
+class solutions(unittest.TestCase):
+  def test_part1(self):
+    day{1} = day{0}part1()
+
+  def test_part2(self):
+    day{1} = day{0}part2()
+
+""".format(myday, args.day, outfile)
+with open(newfile, "a+") as fh:
+  fh.write( template )
+

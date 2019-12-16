@@ -6,9 +6,9 @@ try:
   from aoc_2019.lib.Intcode import Intcode
 except:
   try:
-    from .lib.Intcode import Intcode
+    from Intcode import Intcode
   except:
-    execfile(r"C:\Users\Wolf\Documents\git\aoc-2019\aoc_2019\lib\Intcode.py")
+    execfile(r"C:\Users\Wolf\Documents\git\aoc-2019\lib\Intcode.py")
 
 class IntcodeV2(Intcode):
   def __init__(self, *args):
