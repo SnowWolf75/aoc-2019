@@ -60,5 +60,5 @@ def min_mult(a,b):
     return c
 
 if __name__ == '__main__':
-  data = load_equations("../inputs/2019_12_14_input.txt")
+  data = load_equations("../aoc_2019/inputs/2019_12_14_input.txt")
   print(data)

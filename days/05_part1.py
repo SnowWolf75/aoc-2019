@@ -2,13 +2,21 @@
 
 import sys, os
 sys.path.append( os.path.dirname("../lib/") )
+print("path:",sys.path)
 try:
-  from IntcodeV2 import IntcodeV2
+  from aoc_2019.lib import IntcodeV2
+  print("a")
 except:
-  from aoc_2019.lib.IntcodeV2 import IntcodeV2
+  try:
+    from .lib.IntcodeV2 import IntcodeV2
+    print("b")
+  except:
+    execfile(r"C:\Users\Wolf\Documents\git\aoc-2019\aoc_2019\lib\IntcodeV2.py")
+    print("c")
 
-filename = "../inputs/2019_12_0_input.txt"
+filename = "aoc_2019/inputs/2019_12_05_input.txt"
 print("hello")
 with open(filename) as fh:
   ic = IntcodeV2( fh.read() )
-  print("goodbye")
+
+print("goodbye")
