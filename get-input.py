@@ -25,7 +25,7 @@ url = "https://adventofcode.com/{}/day/{}/input".format(args.year, args.day)
 res = requests.get(url, cookies=cook)
 
 if res.status_code == 200:
-  outfile = "aoc_2019/inputs/{0:04d}_12_{1:02d}_input.txt".format( args.year, args.day )
+  outfile = "inputs/{0:04d}_12_{1:02d}_input.txt".format( args.year, args.day )
   with open(outfile, "w") as fh:
     fh.write( str( res.text.strip() ) )
   print("Input text fetched and saved:",outfile)
