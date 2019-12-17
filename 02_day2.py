@@ -3,7 +3,10 @@
 import sys, os
 sys.path.append( os.path.dirname("../lib/") )
 
-from Intcode import Intcode
+try:
+  from Intcode import Intcode
+except:
+  from ..lib.Intcode import Intcode
 
 with open("intcode.txt") as fh:
   ic = Intcode( fh.read() )

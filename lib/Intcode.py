@@ -46,8 +46,8 @@ class Intcode():
     my_lo = min( lo, hi )
     my_hi = max( lo, hi )
 
-    for v in range( lo, hi ):
-      for n in range( lo, hi ):
+    for v in range( my_lo, my_hi ):
+      for n in range( my_lo, my_hi ):
         self.reinit()
         val = self.run_program( {1: v, 2: n} )
 
